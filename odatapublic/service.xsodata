@@ -1,1 +1,6 @@
- service {    "de.linuxdozent.gittest.data::BOOK" as "Books"    create forbidden    update forbidden    delete forbidden;}
+service {
+    "de.linuxdozent.gittest.data::BOOK" as "Books"
+    create forbidden
+    update forbidden
+    delete forbidden;
+}
