@@ -1,6 +1,5 @@
 {
     "exposed":true, 
-    "authentication" : null,
     "anonymous_connection" : "de.linuxdozent.gittest.odatapublic::public",
     "authorization": [
         "de.linuxdozent.gittest.odatapublic::public"
