@@ -1,5 +1,5 @@
 {
-    "exposed":true,
+    "exposed":true, 
     "authorization": [
         "de.linuxdozent.gittest.odata::admin"
     ]
