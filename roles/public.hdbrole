@@ -1,0 +1,8 @@
+role de.linuxdozent.gittest.roles::public
+{
+sql object de.linuxdozent.gittest.data::BOOK: SELECT;
+
+
+application privilege: "de.linuxdozent.gittest.odatapublic::public";
+
+}

@@ -1,0 +1,1 @@
+ service {    "de.linuxdozent.gittest.data::BOOK" as "Books";}

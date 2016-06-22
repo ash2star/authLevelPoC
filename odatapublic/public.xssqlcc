@@ -1,0 +1,1 @@
+{    "description" : "Public SQL connection",    "role_for_auto_user" : "de.linuxdozent.gittest.roles::public"}
