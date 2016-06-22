@@ -1,0 +1,5 @@
+// Admin Role
+role de.linuxdozent.gittest.roles::admin {
+    application privilege: de.linuxdozent.gittest.odata::admin;
+    sql object de.linuxdozent.gittest.data::BOOK: SELECT, INSERT, UPDATE, DELETE;
+}
