@@ -1,6 +1,6 @@
 # Native HANA PoC for public and private XSODATA Service
 
-This sample project should show how the same HANA database table can be exposed in a public and private XSODATA Service. The public service is read only. The private service allows full CRUD operations.
+This sample project should show how the same HANA database table can be exposed anonymously, authenticated (public) and restricted (private). The anonymous service must be implemented in XSJS to make use of Anonymous SQL connection (XSSQLCC). The public and private service is using XSODATA. The anonymous service restricts the number of fields. The public service is read only. The private service allows full CRUD operations.
 
 ## Setup Guide
 
@@ -8,9 +8,11 @@ You must have developer authorization in your HANA System. To try this project j
 
     de/linuxdozent/gittest
 
-After you've created the package right click on the gittest package and choose **Syncronize with GitHub**. Provide your GitHub credentials to allow the HANA system to read your GitHub repositories. As you can't specify a GitHub repository URL you have to clone the project so you have it in your repository list. Then coose the cloned repository and GitHub branch **master**. Click **Fetch** to retreive the content. After that step you have to activate the artifacts. Try a right click **activate all**. If that fails start with the BOOK.hdbdd file in the data package and work your way through. 
+After you've created the package right click on the gittest package and choose **Syncronize with GitHub**. Provide your GitHub credentials to allow the HANA system to read your GitHub repositories. As you can't specify a GitHub repository URL you have to clone the project so you have it in your repository list. Then coose the cloned repository and GitHub branch **master**. Click **Fetch** to retreive the content. After that step you have to activate the artifacts. Try a right click **activate all**. If that fails start with the BOOK.hdbdd file in the data package and work your way through.
 
-Now add the de.linuxdozent.gittest.roles::admin role to your development user and the de.linuxdozent.gittest.roles::public role to a new user. Don't use your S- or P-User as username if you want to use Application-to-Application Single Sign On (App2AppSSO) with automatic user generation. It will cause an user already exists error. Try what you can do with the /de/linuxdozent/gittest/odata/service.xsodata service using a tool like Postman. Then give /de/linuxdozent/gittest/odatapublic/service.xsodata a try.
+To enable the anonymous access you have to assign your admin user the role **sap.hana.xs.admin.roles::SQLCCAdministrator**. Then you can access the XS Admin tool at **/sap/hana/xs/admin/index.html#/package/de.linuxdozent.gittest.anonymous/sqlcc/anonymous** and there the entry **anonymous.xssqlcc** should be visible. Click on **Edit** and tick the **Active** checkbox and **Save** the settings.
+
+Now add the role **de.linuxdozent.gittest.roles::admin** to your development user and the role **de.linuxdozent.gittest.roles::public** to a new user. Don't use your S- or P-User as username if you want to use Application-to-Application Single Sign On (App2AppSSO) with automatic user generation. It will cause an user already exists error. Try what you can do with the /de/linuxdozent/gittest/odata/service.xsodata service using a tool like Postman. Then give /de/linuxdozent/gittest/odatapublic/service.xsodata a try.
 
 ## Application-to-Application Single Sign On (App2AppSSO)
 
