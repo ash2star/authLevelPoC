@@ -1,4 +1,4 @@
-# Native HANA PoC for public and private XSODATA Service
+# Native HANA PoC for anonymous, public and private XSODATA Service
 
 This sample project should show how the same HANA database table can be exposed anonymously, authenticated (public) and restricted (private). The anonymous service must be implemented in XSJS to make use of Anonymous SQL connection (XSSQLCC). The public and private service is using XSODATA. The anonymous service restricts the number of fields. The public service is read only. The private service allows full CRUD operations.
 
