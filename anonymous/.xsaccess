@@ -1,0 +1,5 @@
+{
+    "exposed":true,
+    "anonymous_connection" : "de.linuxdozent.gittest.anonymous::anonymous",
+    "default_file": "index.html"
+}

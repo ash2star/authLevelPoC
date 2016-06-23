@@ -1,0 +1,3 @@
+role de.linuxdozent.gittest.roles::anonymous {
+  sql object de.linuxdozent.gittest.data::BOOK: SELECT;
+}

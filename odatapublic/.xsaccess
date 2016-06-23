@@ -2,7 +2,7 @@
     "exposed":true, 
     "authentication" :[
         { "method" : "Form" }
-    ],    
+    ],
     "anonymous_connection" : "de.linuxdozent.gittest.odatapublic::public",
     "authorization": [
         "de.linuxdozent.gittest.odatapublic::public"
