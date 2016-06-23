@@ -2,30 +2,19 @@
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>SAPUI5 in 20 Seconds</title>
+    <title>Welcome to HANA XS - Anonymous Area</title>
 
-    <!-- 1.) Load SAPUI5 (from local server), select theme and control library -->
     <script id="sap-ui-bootstrap"
         type="text/javascript"
         src="/sap/ui5/1/resources/sap-ui-core.js"
         data-sap-ui-theme="sap_bluecrystal"
         data-sap-ui-libs="sap.ui.commons, sap.m"></script>
-
-
-    <!-- 2.) Create a UI5 button and place it onto the page -->
-    <script>
-        var myLink = new sap.m.Link("link");
-        myLink.setText("Navigate to the restricted area (requires authentication)");
-        myLink.setHref("../odatapublic/hello.xsjs");
-        myLink.placeAt("uiArea");
-
-    </script>
-
 </head>
 <body class="sapUiBody">
-
-    <!-- This is where you place the UI5 button -->
-    <div id="uiArea"></div>
-    
+    <h1>Welcome to HANA XS - Anonymous Area</h1>
+    <ul>
+        <li><a href="../odatapublic/hello.xsjs">Navigate to the restricted area (requires authentication)</a></li>
+        <li><a href="anonymous.xsjs">Open Anonymous Service</a></li>
+    </ul>
 </body>
 </html>
