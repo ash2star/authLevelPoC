@@ -1,0 +1,6 @@
+// Thanks to the Blog: OData read exits - a delightful solution
+// http://scn.sap.com/community/developer-center/hana/blog/2016/01/15/odata-read-exits--an-ingenious-solution
+schema = "CSWGITTEST";
+query = "SELECT * 
+        FROM \"CSWGITTEST\".\"de.linuxdozent.gittest.data::Bookstore.Customer\"
+        WHERE \"UserName\" = CURRENT_USER";

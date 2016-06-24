@@ -1,8 +1,9 @@
-role de.linuxdozent.gittest.roles::public
-{
-sql object de.linuxdozent.gittest.data::BOOK: SELECT;
-
-
-application privilege: "de.linuxdozent.gittest.odatapublic::public";
-
+role de.linuxdozent.gittest.roles::public {
+    sql object de.linuxdozent.gittest.data::BOOK: SELECT;
+    sql object de.linuxdozent.gittest.data::Bookstore.Book: SELECT;
+    sql object de.linuxdozent.gittest.data::Bookstore.Customer: SELECT, INSERT, UPDATE;
+    sql object de.linuxdozent.gittest.odatapublic.procedures::CustomerRead: SELECT;
+    sql object de.linuxdozent.gittest.odatapublic.procedures::CustomerUpdate: EXECUTE;
+    sql object de.linuxdozent.gittest.odatapublic.procedures::CustomerCreate: EXECUTE;
+    application privilege: "de.linuxdozent.gittest.odatapublic::public";
 }

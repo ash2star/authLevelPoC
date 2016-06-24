@@ -1,0 +1,1 @@
+import = [{    table = "de.linuxdozent.gittest.data::BOOK";    schema = "CSWGITTEST";        file = "de.linuxdozent.gittest.data:books.csv";    header = false;    }];

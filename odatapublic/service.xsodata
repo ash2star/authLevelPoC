@@ -1,6 +1,11 @@
 service {
-    "de.linuxdozent.gittest.data::BOOK" as "Books"
+    "de.linuxdozent.gittest.data::Bookstore.Book" as "Books"
     create forbidden
     update forbidden
+    delete forbidden;
+    // Read Customer from View to restrict to own user
+    "de.linuxdozent.gittest.odatapublic.procedures::CustomerRead" as "Customer" key ("UserName")
+    create using "de.linuxdozent.gittest.odatapublic.procedures::CustomerCreate"
+    update using "de.linuxdozent.gittest.odatapublic.procedures::CustomerUpdate"
     delete forbidden;
 }
