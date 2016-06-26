@@ -1,0 +1,29 @@
+PROCEDURE "CSWGITTEST"."de.linuxdozent.gittest.odatapublic.procedures::CustomerCreate" ( 
+    IN inrow "CSWGITTEST"."de.linuxdozent.gittest.data::Bookstore.Customer",
+    OUT error "CSWGITTEST"."de.linuxdozent.gittest.data::Bookstore.error"
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   DEFAULT SCHEMA CSWGITTEST
+   AS
+BEGIN
+
+    DECLARE lv_UserName  string;
+    DECLARE lv_FirstName string;
+    DECLARE lv_LastName  string;
+    DECLARE lv_EMail     string;
+
+    SELECT * INTO lv_UserName, lv_FirstName, lv_LastName, lv_EMail FROM :inrow;
+    -- Don't trust the provided Username. We read it from the current user
+    SELECT CURRENT_USER INTO lv_UserName FROM DUMMY; 
+
+    insert into "de.linuxdozent.gittest.data::Bookstore.Customer"
+      values (lv_UserName, lv_FirstName, lv_LastName, lv_EMail);
+
+    if 1 = 2 then 
+        error = select 400 as http_status_code, 
+                'Insert failed' error_message, 
+                '' detail from dummy;
+    end if;
+    
+END
