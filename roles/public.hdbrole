@@ -15,12 +15,17 @@
 //
 
 role de.linuxdozent.gittest.roles::public {
+    // Needed to access hdbsequence
+    catalog schema "CSWGITTEST": SELECT;
+    // Book
     sql object de.linuxdozent.gittest.data::BOOK: SELECT;
     sql object de.linuxdozent.gittest.data::Bookstore.Book: SELECT;
+    // Customer
     sql object de.linuxdozent.gittest.data::Bookstore.Customer: SELECT, INSERT, UPDATE;
     sql object de.linuxdozent.gittest.odatapublic.procedures::CustomerRead: SELECT;
     sql object de.linuxdozent.gittest.odatapublic.procedures::CustomerUpdate: EXECUTE;
     sql object de.linuxdozent.gittest.odatapublic.procedures::CustomerCreate: EXECUTE;
+    // Order
     sql object de.linuxdozent.gittest.data::Bookstore.CustomerOrder.Header: SELECT, INSERT, UPDATE;
     sql object de.linuxdozent.gittest.odatapublic.procedures::OrderRead: SELECT;
     sql object de.linuxdozent.gittest.odatapublic.procedures::OrderUpdate: EXECUTE;
