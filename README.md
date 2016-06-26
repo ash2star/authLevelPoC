@@ -12,7 +12,11 @@ After you've created the package right click on the gittest package and choose *
 
 To enable the anonymous access you have to assign your admin user the role **sap.hana.xs.admin.roles::SQLCCAdministrator**. Then you can access the XS Admin tool at **/sap/hana/xs/admin/index.html#/package/de.linuxdozent.gittest.anonymous/sqlcc/anonymous** and there the entry **anonymous.xssqlcc** should be visible. Click on **Edit** and tick the **Active** checkbox and **Save** the settings.
 
-Now add the role **de.linuxdozent.gittest.roles::admin** to your development user and the role **de.linuxdozent.gittest.roles::public** to a new user. Don't use your S- or P-User as username if you want to use Application-to-Application Single Sign On (App2AppSSO) with automatic user generation. It will cause an user already exists error. Try what you can do with the /de/linuxdozent/gittest/odata/service.xsodata service using a tool like Postman. Then give /de/linuxdozent/gittest/odatapublic/service.xsodata a try.
+Now add the role **de.linuxdozent.gittest.roles::admin** to your development user and the role **de.linuxdozent.gittest.roles::public** to a new user. Don't use your S- or P-User as username if you want to use Application-to-Application Single Sign On (App2AppSSO) with automatic user generation. It will cause an user already exists error. 
+
+## Test
+
+Try what you can do with the /de/linuxdozent/gittest/odata/service.xsodata service using a tool like Postman. Then give /de/linuxdozent/gittest/odatapublic/service.xsodata a try.
 
 With the public role you should be able to read all the details of the books. Also you should be able to create a customer and to read and update update the details. But always only for your own user.
 
