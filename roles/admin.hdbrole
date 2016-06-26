@@ -19,4 +19,5 @@ role de.linuxdozent.gittest.roles::admin {
     sql object de.linuxdozent.gittest.data::BOOK: SELECT, INSERT, UPDATE, DELETE;
     sql object de.linuxdozent.gittest.data::Bookstore.Book: SELECT, INSERT, UPDATE, DELETE;
     sql object de.linuxdozent.gittest.data::Bookstore.Customer: SELECT, INSERT, UPDATE, DELETE;
+    sql object de.linuxdozent.gittest.data::Bookstore.CustomerOrder.Header: SELECT, INSERT, UPDATE, DELETE;
 }
