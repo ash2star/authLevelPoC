@@ -25,4 +25,9 @@ service {
     create using "de.linuxdozent.gittest.odatapublic.procedures::CustomerCreate"
     update using "de.linuxdozent.gittest.odatapublic.procedures::CustomerUpdate"
     delete forbidden;
+    // Read Orders from View to restrict to own user
+    "de.linuxdozent.gittest.odatapublic.procedures::OrderRead" as "Orders" key ("ID")
+    create using "de.linuxdozent.gittest.odatapublic.procedures::OrderCreate"
+    update using "de.linuxdozent.gittest.odatapublic.procedures::OrderUpdate"
+    delete forbidden;
 }
