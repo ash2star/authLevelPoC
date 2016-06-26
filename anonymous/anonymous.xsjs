@@ -24,7 +24,7 @@ function test() {
     $.response.contentType = "application/json";
     try {
         conn = $.db.getConnection("de.linuxdozent.gittest.anonymous::anonymous");
-        var pStmt = conn.prepareStatement('SELECT "Author", "BookTitle" FROM "de.linuxdozent.gittest.data::BOOK"');
+        var pStmt = conn.prepareStatement('SELECT "Author", "BookTitle" FROM "de.linuxdozent.gittest.data::Bookstore.Book"');
         var rs = pStmt.executeQuery();
         body = "[";
         while (rs.next()) {
