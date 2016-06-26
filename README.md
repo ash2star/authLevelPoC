@@ -16,6 +16,8 @@ Now add the role **de.linuxdozent.gittest.roles::admin** to your development use
 
 With the public role you should be able to read all the details of the books. Also you should be able to create a customer and to read and update update the details. But always only for your own user.
 
+You can use the [OData Explorer](http://scn.sap.com/community/developer-center/hana/blog/2014/12/02/sap-hana-sps-09-new-developer-features-new-xsodata-features) that is part of HANA since SPS 09 to test i.e. the admin service using the path: **/sap/hana/ide/editor/plugin/testtools/odataexplorer/index.html?appName=/de/linuxdozent/gittest/odata/service.xsodata/**.
+
 ## Application-to-Application Single Sign On (App2AppSSO)
 
 If you want to use the HANA MDC XSODATA Service in a HCP HTML5 app and with App2AppSSO then follow the great Blog by Martin Raepple: [Principal Propagation between HTML5- or Java-based applications and SAP HANA XS on SAP HANA Cloud Platform](http://scn.sap.com/community/developer-center/cloud-platform/blog/2016/03/21/principal-propagation-between-html5-and-sap-hana-xs-on-sap-hana-cloud-platform).
