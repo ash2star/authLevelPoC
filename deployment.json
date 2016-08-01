@@ -2,5 +2,5 @@
     "strategy": "hanaxs",
 	"host": "localhost:30013",
 	"pattern": "de.linuxdozent.gittest",
-	"root": [ "anonymous", "data", "odata", "odatapublic", "roles" ]
+	"root": "data"
 }
