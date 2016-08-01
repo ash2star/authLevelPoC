@@ -1,6 +1,6 @@
 var mail = new $.net.Mail({
     sender: {address: "gregor.wolf@gmail.com"},
-    to: [{ name: "Gregor Wolf", address: "gregor.wolf@gmail.com", nameEncoding: "UTF-8"}],
+    to: [{ name: "Gregor Wolf", address: "wolf.gregor@web.de", nameEncoding: "UTF-8"}],
     subject: "Request Organizer authorization",
     subjectEncoding: "UTF-8",
     parts: [ new $.net.Mail.Part({
