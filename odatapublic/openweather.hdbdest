@@ -1,0 +1,5 @@
+host = "api.openweathermap.org";
+port = 80; 
+authType = none;
+useSSL = false;
+timeout = 30000;
