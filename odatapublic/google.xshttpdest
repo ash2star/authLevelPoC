@@ -1,0 +1,6 @@
+host = "maps.googleapis.com";
+port = 80; 
+pathPrefix = "/maps/api/distancematrix/json";
+authType = none;
+useSSL = false;
+timeout = 30000;
