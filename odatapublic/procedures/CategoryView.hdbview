@@ -1,0 +1,3 @@
+schema = "CSWGITTEST";
+query = "select * from \"de.linuxdozent.gittest.odatapublic.procedures::Category\"()";
+depends_on_view=["de.linuxdozent.gittest.odatapublic.procedures::Category"];
