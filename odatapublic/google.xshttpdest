@@ -5,5 +5,5 @@ authType = none;
 useSSL = false;
 timeout = 30000;
 useProxy = true;
-proxyHost = "proxy";
+proxyHost = "proxy-trial";
 proxyPort = 8080;
