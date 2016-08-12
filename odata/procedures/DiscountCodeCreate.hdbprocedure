@@ -1,0 +1,62 @@
+--
+--   Copyright 2016 Gregor Wolf
+--
+--   Licensed under the Apache License, Version 2.0 (the "License");
+--   you may not use this file except in compliance with the License.
+--   You may obtain a copy of the License at
+--
+--       http://www.apache.org/licenses/LICENSE-2.0
+--
+--   Unless required by applicable law or agreed to in writing, software
+--   distributed under the License is distributed on an "AS IS" BASIS,
+--   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+--   See the License for the specific language governing permissions and
+--   limitations under the License.
+--
+
+PROCEDURE "CSWGITTEST"."de.linuxdozent.gittest.odata.procedures::DiscountCodeCreate" ( 
+    IN inrow "CSWGITTEST"."de.linuxdozent.gittest.data::Bookstore.DiscountCode",
+    OUT error "CSWGITTEST"."de.linuxdozent.gittest.data::Bookstore.error"
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   DEFAULT SCHEMA CSWGITTEST
+   AS
+BEGIN
+
+    DECLARE lv_ID            string;
+    DECLARE lv_UserName      string;
+    DECLARE lv_DiscountValue Integer;
+    DECLARE lv_SHA256HASH    string;
+    DECLARE lv_EncryptionKey string;
+
+    SELECT * INTO lv_ID, lv_UserName, lv_DiscountValue, lv_SHA256HASH FROM :inrow;
+
+    select "de.linuxdozent.gittest.data::discountCodeId".NEXTVAL into lv_ID from dummy;
+    
+    SELECT NULL INTO lv_UserName FROM DUMMY;
+
+    SELECT "EncryptionKey"
+      INTO lv_EncryptionKey
+      FROM "de.linuxdozent.gittest.data::Bookstore.CustomerKey"
+      WHERE "UserName" = lv_UserName;
+      
+    if lv_UserName <> NULL then
+
+        SELECT HASH_SHA256(
+            to_binary(lv_EncryptionKey) 
+            , to_binary(lv_ID)
+            , to_binary(lv_UserName)
+            , to_binary(lv_DiscountValue)
+            ) INTO lv_SHA256HASH FROM DUMMY;
+    
+        insert into "de.linuxdozent.gittest.data::Bookstore.DiscountCode"
+          values (lv_ID, lv_UserName, lv_DiscountValue, lv_SHA256HASH);
+
+    else
+        error = select 400 as http_status_code, 
+                'Insert failed' error_message, 
+                '' detail from dummy;
+    end if;
+    
+END
