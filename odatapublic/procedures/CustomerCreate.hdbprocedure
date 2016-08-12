@@ -28,13 +28,29 @@ BEGIN
     DECLARE lv_FirstName string;
     DECLARE lv_LastName  string;
     DECLARE lv_EMail     string;
+    DECLARE lv_EncryptionKey string;
+    DECLARE lv_rand double;
 
     SELECT * INTO lv_UserName, lv_FirstName, lv_LastName, lv_EMail FROM :inrow;
     -- Don't trust the provided Username. We read it from the current user
     SELECT CURRENT_USER INTO lv_UserName FROM DUMMY; 
+    
+    SELECT RAND() INTO lv_rand from dummy;
+    
+    SELECT HASH_SHA256(
+        to_binary(lv_UserName) 
+        , to_binary(lv_FirstName)
+        , to_binary(lv_LastName)
+        , to_binary(lv_EMail)
+        , to_binary(CURRENT_TIMESTAMP)
+        , to_binary(lv_rand)
+        ) INTO lv_EncryptionKey FROM DUMMY;
 
     insert into "de.linuxdozent.gittest.data::Bookstore.Customer"
       values (lv_UserName, lv_FirstName, lv_LastName, lv_EMail);
+
+    insert into "de.linuxdozent.gittest.data::Bookstore.CustomerKey"
+      values (lv_UserName, lv_EncryptionKey);
 
     if 1 = 2 then 
         error = select 400 as http_status_code, 
