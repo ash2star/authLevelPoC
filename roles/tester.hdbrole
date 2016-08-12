@@ -1,0 +1,4 @@
+role de.linuxdozent.gittest.roles::tester {
+    sql object de.linuxdozent.gittest.test.procedures::setup: EXECUTE;
+    sql object de.linuxdozent.gittest.test.procedures::teardown: EXECUTE;
+}
