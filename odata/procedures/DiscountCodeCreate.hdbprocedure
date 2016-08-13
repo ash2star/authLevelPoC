@@ -29,19 +29,20 @@ BEGIN
     DECLARE lv_DiscountValue Integer;
     DECLARE lv_SHA256HASH    string;
     DECLARE lv_EncryptionKey string;
+    DECLARE lv_Redeemed      string;
 
-    SELECT * INTO lv_ID, lv_UserName, lv_DiscountValue, lv_SHA256HASH FROM :inrow;
+    SELECT * INTO lv_ID, lv_UserName, lv_DiscountValue, lv_SHA256HASH, lv_Redeemed FROM :inrow;
 
     select "de.linuxdozent.gittest.data::discountCodeId".NEXTVAL into lv_ID from dummy;
     
-    SELECT NULL INTO lv_UserName FROM DUMMY;
+    SELECT NULL INTO lv_EncryptionKey FROM DUMMY;
 
     SELECT "EncryptionKey"
       INTO lv_EncryptionKey
       FROM "de.linuxdozent.gittest.data::Bookstore.CustomerKey"
       WHERE "UserName" = lv_UserName;
       
-    if lv_UserName <> NULL then
+    if lv_EncryptionKey <> '' then
 
         SELECT HASH_SHA256(
             to_binary(lv_EncryptionKey) 
@@ -50,13 +51,13 @@ BEGIN
             , to_binary(lv_DiscountValue)
             ) INTO lv_SHA256HASH FROM DUMMY;
     
-        insert into "de.linuxdozent.gittest.data::Bookstore.DiscountCode"
-          values (lv_ID, lv_UserName, lv_DiscountValue, lv_SHA256HASH);
+        INSERT INTO "de.linuxdozent.gittest.data::Bookstore.DiscountCode"
+          VALUES (lv_ID, lv_UserName, lv_DiscountValue, lv_SHA256HASH, 'N');
 
     else
         error = select 400 as http_status_code, 
                 'Insert failed' error_message, 
-                '' detail from dummy;
+                lv_ID detail from dummy;
     end if;
     
 END

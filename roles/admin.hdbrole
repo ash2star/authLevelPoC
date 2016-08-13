@@ -16,10 +16,14 @@
 
 role de.linuxdozent.gittest.roles::admin {
     application privilege: de.linuxdozent.gittest.odata::admin;
-    // Needed to access hdbsequence
-    catalog schema "CSWGITTEST": SELECT;
+    sql object de.linuxdozent.gittest.data::orderId: SELECT;
+    sql object de.linuxdozent.gittest.data::discountCodeId: SELECT;
     sql object de.linuxdozent.gittest.data::BOOK: SELECT, INSERT, UPDATE, DELETE;
     sql object de.linuxdozent.gittest.data::Bookstore.Book: SELECT, INSERT, UPDATE, DELETE;
     sql object de.linuxdozent.gittest.data::Bookstore.Customer: SELECT, INSERT, UPDATE, DELETE;
+    sql object de.linuxdozent.gittest.data::Bookstore.CustomerKey: SELECT;
+    sql object de.linuxdozent.gittest.data::Bookstore.DiscountCode: SELECT, INSERT, UPDATE;
+    sql object de.linuxdozent.gittest.odata.procedures::DiscountCodeCreate: EXECUTE;
+    sql object de.linuxdozent.gittest.odata.procedures::DiscountCodeUpdate: EXECUTE;
     sql object de.linuxdozent.gittest.data::Bookstore.CustomerOrder.Header: SELECT, INSERT, UPDATE, DELETE;
 }

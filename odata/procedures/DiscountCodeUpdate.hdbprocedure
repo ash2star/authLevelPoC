@@ -1,0 +1,75 @@
+--
+--   Copyright 2016 Gregor Wolf
+--
+--   Licensed under the Apache License, Version 2.0 (the "License");
+--   you may not use this file except in compliance with the License.
+--   You may obtain a copy of the License at
+--
+--       http://www.apache.org/licenses/LICENSE-2.0
+--
+--   Unless required by applicable law or agreed to in writing, software
+--   distributed under the License is distributed on an "AS IS" BASIS,
+--   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+--   See the License for the specific language governing permissions and
+--   limitations under the License.
+--
+
+PROCEDURE "CSWGITTEST"."de.linuxdozent.gittest.odata.procedures::DiscountCodeUpdate" ( 
+    IN inrow "CSWGITTEST"."de.linuxdozent.gittest.data::Bookstore.DiscountCode",
+    IN oldrow "CSWGITTEST"."de.linuxdozent.gittest.data::Bookstore.DiscountCode",
+    OUT error "CSWGITTEST"."de.linuxdozent.gittest.data::Bookstore.error"
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   DEFAULT SCHEMA CSWGITTEST
+   AS
+BEGIN
+
+    DECLARE lv_ID             string;
+    DECLARE lv_UserName       string;
+    DECLARE lv_DiscountValue  Integer;
+    DECLARE lv_SHA256HASH     string;
+    DECLARE lv_New_SHA256HASH string;
+    DECLARE lv_EncryptionKey  string;
+    DECLARE lv_Redeemed       string;
+    DECLARE lv_msg            string;
+
+    SELECT * INTO lv_ID, lv_UserName, lv_DiscountValue, lv_SHA256HASH, lv_Redeemed FROM :inrow;
+    SELECT NULL INTO lv_ID FROM DUMMY;
+    SELECT NULL INTO lv_UserName FROM DUMMY;
+    SELECT NULL INTO lv_DiscountValue FROM DUMMY;
+
+    SELECT *
+      INTO lv_ID, lv_UserName, lv_DiscountValue, lv_SHA256HASH, lv_Redeemed
+      FROM "de.linuxdozent.gittest.data::Bookstore.DiscountCode"
+      WHERE "SHA256HASH" = lv_SHA256HASH;
+
+    -- Check if we can recreate the Hash
+    SELECT "EncryptionKey"
+      INTO lv_EncryptionKey
+      FROM "de.linuxdozent.gittest.data::Bookstore.CustomerKey"
+      WHERE "UserName" = lv_UserName;
+
+    SELECT HASH_SHA256(
+        to_binary(lv_EncryptionKey) 
+        , to_binary(lv_ID)
+        , to_binary(lv_UserName)
+        , to_binary(lv_DiscountValue)
+        ) INTO lv_New_SHA256HASH FROM DUMMY;
+      
+    if lv_New_SHA256HASH = lv_SHA256HASH then
+        UPDATE "de.linuxdozent.gittest.data::Bookstore.DiscountCode"
+          SET "Redeemed" = 'Y'
+          WHERE "ID" = lv_ID;
+    else
+        SELECT CONCAT( 'New_SHA256HASH: ', lv_New_SHA256HASH ) INTO lv_msg FROM DUMMY;
+        SELECT CONCAT( lv_msg, ' SHA256HASH: ' ) INTO lv_msg FROM DUMMY;
+        SELECT CONCAT( lv_msg, lv_SHA256HASH ) INTO lv_msg FROM DUMMY;
+        SELECT CONCAT( lv_msg, ' UserName: ' ) INTO lv_msg FROM DUMMY;
+        SELECT CONCAT( lv_msg, lv_UserName ) INTO lv_msg FROM DUMMY;
+        error = select 400 as http_status_code, 
+                'Update failed' error_message, 
+                lv_msg detail from dummy;
+    end if;
+    
+END
