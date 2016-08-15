@@ -15,10 +15,25 @@
    limitations under the License.
 
 */
+describe("Read discount value for customer", function() {
+    it("should return discount value", function() {
+        csrfToken = getCSRFtokenAndLogin("BSADMIN", password);
+
+        var check = {
+            "SHA256HASH": SHA256HASH
+        };
+        var DiscountCodeURL = "/de/linuxdozent/gittest/odata/checkDiscountCode.xsjs";
+        var xhr = prepareRequest("POST", DiscountCodeURL);
+        xhr.send(JSON.stringify(check));
+        expect(xhr.status).toBe(200);
+        var body = xhr.responseText ? JSON.parse(xhr.responseText) : "";
+        expect(body.OUTC[0].DiscountValue).toBe(10);
+    });
+});
+
 
 describe("Redeem Discount Codes of the user", function() {
     it("should redeem discount codes", function() {
-        csrfToken = getCSRFtokenAndLogin("BSADMIN", password);
 
         var xhr = prepareRequest("PATCH", DiscountCodeUri);
         var change = {

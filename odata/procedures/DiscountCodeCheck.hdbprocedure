@@ -1,0 +1,16 @@
+PROCEDURE "CSWGITTEST"."de.linuxdozent.gittest.odata.procedures::DiscountCodeCheck" (
+        IN inhash VARBINARY(32),
+        OUT outc "CSWGITTEST"."de.linuxdozent.gittest.data::Bookstore.tt_DiscountCode"
+    )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY DEFINER
+   DEFAULT SCHEMA CSWGITTEST
+   READS SQL DATA AS
+BEGIN
+
+    DECLARE lv_count Integer;
+
+    outc = SELECT "ID", "UserName", "DiscountValue", "Redeemed"
+        FROM "CSWGITTEST"."de.linuxdozent.gittest.data::Bookstore.DiscountCode" 
+        WHERE "SHA256HASH" = inhash;
+END
