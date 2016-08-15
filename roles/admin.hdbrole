@@ -24,6 +24,7 @@ role de.linuxdozent.gittest.roles::admin {
     sql object de.linuxdozent.gittest.data::Bookstore.CustomerKey: SELECT;
     sql object de.linuxdozent.gittest.data::Bookstore.DiscountCode: INSERT, UPDATE;
     sql object de.linuxdozent.gittest.odata.procedures::DiscountCodeRead: SELECT;
+    sql object de.linuxdozent.gittest.odata.procedures::DiscountCodeCheck: EXECUTE;
     sql object de.linuxdozent.gittest.odata.procedures::DiscountCodeCreate: EXECUTE;
     sql object de.linuxdozent.gittest.odata.procedures::DiscountCodeUpdate: EXECUTE;
     sql object de.linuxdozent.gittest.data::Bookstore.CustomerOrder.Header: SELECT, INSERT, UPDATE, DELETE;

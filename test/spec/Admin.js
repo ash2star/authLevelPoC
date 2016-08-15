@@ -49,7 +49,6 @@ describe("Read Discounts for user", function() {
         var body = xhr.responseText ? JSON.parse(xhr.responseText) : "";
         expect(body.d.results[0].UserName).toBe(UserName);
         DiscountCodeUri = body.d.results[0].__metadata.uri;
-        SHA256HASH = body.d.results[0].SHA256HASH;
     });
 });
 
