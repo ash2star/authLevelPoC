@@ -25,6 +25,8 @@ role de.linuxdozent.gittest.roles::public {
     sql object de.linuxdozent.gittest.odatapublic.procedures::CustomerRead: SELECT;
     sql object de.linuxdozent.gittest.odatapublic.procedures::CustomerUpdate: EXECUTE;
     sql object de.linuxdozent.gittest.odatapublic.procedures::CustomerCreate: EXECUTE;
+    // DiscountCode
+    sql object de.linuxdozent.gittest.odatapublic.procedures::DiscountCodeRead: SELECT;
     // CustomerKey
     sql object de.linuxdozent.gittest.data::Bookstore.CustomerKey: SELECT, INSERT;
     // Order

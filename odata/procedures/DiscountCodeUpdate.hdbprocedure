@@ -20,7 +20,7 @@ PROCEDURE "CSWGITTEST"."de.linuxdozent.gittest.odata.procedures::DiscountCodeUpd
     OUT error "CSWGITTEST"."de.linuxdozent.gittest.data::Bookstore.error"
 )
    LANGUAGE SQLSCRIPT
-   SQL SECURITY INVOKER
+   SQL SECURITY DEFINER
    DEFAULT SCHEMA CSWGITTEST
    AS
 BEGIN

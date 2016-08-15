@@ -16,12 +16,18 @@
 
 */
 
-var users = [
-        "BSCUSTOMER",
-        "BSADMIN"
-    ];
-var initpwd  = "Init1234";
-var password = "Test1234";
-var csrfToken = "";
-var DiscountCodeUri = "";
-var SHA256HASH = "";
+describe("Redeem Discount Codes of the user", function() {
+    it("should redeem discount codes", function() {
+        csrfToken = getCSRFtokenAndLogin("BSADMIN", password);
+
+        var xhr = prepareRequest("PATCH", DiscountCodeUri);
+        var change = {
+            "SHA256HASH": SHA256HASH
+        };
+        xhr.send(JSON.stringify(change));
+        expect(xhr.status).toBe(204);
+
+        logout(csrfToken);
+        checkSession();
+    });
+});

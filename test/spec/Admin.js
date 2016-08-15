@@ -16,8 +16,6 @@
 
 */
 var UserName = "BSCUSTOMER";
-var DiscountCodeUri = "";
-var SHA256HASH = "";
 var DiscountCodeBaseURL = "/de/linuxdozent/gittest/odata/service.xsodata/DiscountCode";
 
 describe("Login BSADMIN", function() {
@@ -42,8 +40,8 @@ describe("Create discount code for BSCUSTOMER", function() {
     });
 });
 
-describe("Read Discount Codes of the user", function() {
-    it("should get a list of discount codes", function() {
+describe("Read Discounts for user", function() {
+    it("should get a list of discounts but not the code", function() {
         var DiscountCodeURL = DiscountCodeBaseURL + "?$filter=UserName eq '" + UserName + "'";
         var xhr = prepareRequest("GET", DiscountCodeURL);
         xhr.send();
@@ -54,18 +52,6 @@ describe("Read Discount Codes of the user", function() {
         SHA256HASH = body.d.results[0].SHA256HASH;
     });
 });
-
-describe("Redeem Discount Codes of the user", function() {
-    it("should redeem discount codes", function() {
-        var xhr = prepareRequest("PATCH", DiscountCodeUri);
-        var change = {
-            "SHA256HASH": SHA256HASH
-        };
-        xhr.send(JSON.stringify(change));
-        expect(xhr.status).toBe(204);
-    });
-});
-
 
 describe("Logout BSADMIN", function() {
     it("should logout BSADMIN", function() {

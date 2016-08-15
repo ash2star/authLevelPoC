@@ -16,12 +16,17 @@
 
 */
 
-var users = [
-        "BSCUSTOMER",
-        "BSADMIN"
-    ];
-var initpwd  = "Init1234";
-var password = "Test1234";
-var csrfToken = "";
-var DiscountCodeUri = "";
-var SHA256HASH = "";
+describe("Login and read discount codes", function() {
+    it("should Login user and read discount codes", function() {
+        csrfToken = getCSRFtokenAndLogin("BSCUSTOMER", password);
+
+        var xhr = prepareRequest("GET", "/de/linuxdozent/gittest/odatapublic/service.xsodata/DiscountCode");
+        xhr.send();
+        expect(xhr.status).toBe(200);
+        var body = xhr.responseText ? JSON.parse(xhr.responseText) : "";
+        SHA256HASH = body.d.results[0].SHA256HASH;
+
+        logout(csrfToken);
+        checkSession();
+    });
+});

@@ -25,6 +25,11 @@ service {
     create forbidden
     update forbidden
     delete forbidden;
+    // Read DiscountCode from View to restrict to own user
+    "de.linuxdozent.gittest.odatapublic.procedures::DiscountCodeRead" as "DiscountCode" key ("ID")
+    create forbidden
+    update forbidden
+    delete forbidden;
     // Read Customer from View to restrict to own user
     "de.linuxdozent.gittest.odatapublic.procedures::CustomerRead" as "Customer" key ("UserName")
     create using "de.linuxdozent.gittest.odatapublic.procedures::CustomerCreate"
