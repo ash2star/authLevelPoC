@@ -4,10 +4,12 @@ PROCEDURE "CSWGITTEST"."de.linuxdozent.gittest.test.procedures::setup" ( )
 	DEFAULT SCHEMA CSWGITTEST
 AS
 BEGIN
+    EXEC 'DROP USER BSCUSTOMER;';
     EXEC 'CREATE USER BSCUSTOMER PASSWORD Init1234;';
     EXEC 'CREATE USER BSADMIN PASSWORD Init1234;';
 
-    DELETE FROM "de.linuxdozent.gittest.data::Bookstore.Book";
+    -- Do not delete the existing books
+    -- DELETE FROM "de.linuxdozent.gittest.data::Bookstore.Book";
     DELETE FROM "de.linuxdozent.gittest.data::Bookstore.Customer";
     DELETE FROM "de.linuxdozent.gittest.data::Bookstore.CustomerKey";
     DELETE FROM "de.linuxdozent.gittest.data::Bookstore.DiscountCode";

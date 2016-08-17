@@ -22,5 +22,6 @@
 schema = "CSWGITTEST";
 query = "SELECT * 
         FROM \"CSWGITTEST\".\"de.linuxdozent.gittest.data::Bookstore.DiscountCode\"
-        WHERE \"UserName\" = CURRENT_USER";
+        WHERE \"UserName\" = CURRENT_USER
+          AND \"Redeemed\" = 'N'";
 

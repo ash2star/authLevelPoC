@@ -4,7 +4,6 @@ PROCEDURE "CSWGITTEST"."de.linuxdozent.gittest.test.procedures::teardown" ( )
 	DEFAULT SCHEMA CSWGITTEST
 AS
 BEGIN
-    EXEC 'DROP USER BSCUSTOMER;';
+    -- EXEC 'DROP USER BSCUSTOMER;';
     EXEC 'DROP USER BSADMIN;';
-
 END
