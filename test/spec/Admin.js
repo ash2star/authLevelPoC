@@ -43,6 +43,15 @@ describe("Create discount code for BSCUSTOMER", function() {
         xhr = prepareRequest("POST", "/de/linuxdozent/gittest/odata/service.xsodata/DiscountCode");
         xhr.send(JSON.stringify(create));
         expect(xhr.status).toBe(201);
+        /*
+        // Create Code for different User
+        create.ID = "3";
+        create.DiscountValue = 5;
+        create.UserName = "S0001142741";
+        xhr = prepareRequest("POST", "/de/linuxdozent/gittest/odata/service.xsodata/DiscountCode");
+        xhr.send(JSON.stringify(create));
+        expect(xhr.status).toBe(201);
+        */
     });
 });
 
