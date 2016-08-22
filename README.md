@@ -2,6 +2,10 @@
 
 This sample project should show how the same HANA database table can be exposed anonymously, authenticated (public) and restricted (private). The anonymous service must be implemented in XSJS to make use of Anonymous SQL connection (XSSQLCC). The public and private service is using XSODATA. The anonymous service restricts the number of fields. The public service is read only. The private service allows full CRUD operations.
 
+There is also a frontend projects implemented in SAPUI5 which you can find here:
+
+* [XSauthLevelPoCPublicUI](https://github.com/gregorwolf/XSauthLevelPoCPublicUI)
+
 ## Setup Guide
 
 You must have developer authorization in your HANA System. To try this project just spin up your own HANA Multitennant Database Container (MDC) on the HANA Cloud Platform Trial (HCP). Open the SAP HANA Web-based Development Workbench and create the package:
