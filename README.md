@@ -4,6 +4,7 @@ This sample project should show how the same HANA database table can be exposed 
 
 There is also a frontend projects implemented in SAPUI5 which you can find here:
 
+* [XSauthLevelPoCAdminUI](https://github.com/gregorwolf/XSauthLevelPoCAdminUI)
 * [XSauthLevelPoCPublicUI](https://github.com/gregorwolf/XSauthLevelPoCPublicUI)
 
 ## Setup Guide
