@@ -20,7 +20,9 @@ Now add the role **de.linuxdozent.gittest.roles::admin** to your development use
 
 ## Test
 
-Try what you can do with the /de/linuxdozent/gittest/odata/service.xsodata service using a tool like Postman. Then give /de/linuxdozent/gittest/odatapublic/service.xsodata a try.
+There is an automated test implemented using Jasmine. Read though the [setup guide](https://github.com/sapmentors/SITreg/blob/master/test/README.md) and do this stepps accordingly for this project.
+
+You can also try the API via the path /de/linuxdozent/gittest/odata/service.xsodata using a tool like Postman. Then give /de/linuxdozent/gittest/odatapublic/service.xsodata a try.
 
 With the public role you should be able to read all the details of the books. Also you should be able to create a customer and to read and update update the details. But always only for your own user.
 
