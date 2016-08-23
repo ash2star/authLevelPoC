@@ -31,6 +31,17 @@ describe("Read discount value for customer", function() {
     });
 });
 
+describe("Check discount code using GET", function() {
+    it("should return discount value", function() {
+        var DiscountCodeURL = "/de/linuxdozent/gittest/odata/checkDiscountCode.xsjs" + "?SHA256HASH=" + encodeURIComponent(SHA256HASH);
+        var xhr = prepareRequest("GET", DiscountCodeURL);
+        xhr.send();
+        expect(xhr.status).toBe(200);
+        var body = xhr.responseText ? JSON.parse(xhr.responseText) : "";
+        expect(body.OUTC[0].DiscountValue).toBe(10);
+    });
+});
+
 
 describe("Redeem Discount Codes of the user", function() {
     it("should redeem discount codes", function() {

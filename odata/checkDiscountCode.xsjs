@@ -24,9 +24,15 @@ function checkDiscountCode() {
     $.response.status = $.net.http.OK;
     $.response.contentType = "application/json";
     try {
-        var content = $.request.body.asString();
-        var check = JSON.parse(content);
-        var SHA256HASHbin = $.util.codec.decodeBase64(check.SHA256HASH);
+        var SHA256HASH = "";
+        if($.request.method === $.net.http.GET) {
+            SHA256HASH = decodeURIComponent($.request.parameters.get("SHA256HASH"));
+        } else {
+            var content = $.request.body.asString();
+            var check = JSON.parse(content);
+            SHA256HASH = check.SHA256HASH;
+        }
+        var SHA256HASHbin = $.util.codec.decodeBase64(SHA256HASH);
 
         conn = $.hdb.getConnection();
         var discountCodeCheck = conn.loadProcedure("CSWGITTEST", "de.linuxdozent.gittest.odata.procedures::DiscountCodeCheck");
