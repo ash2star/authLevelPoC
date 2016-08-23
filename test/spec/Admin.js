@@ -37,13 +37,14 @@ describe("Create discount code for BSCUSTOMER", function() {
         xhr.send(JSON.stringify(create));
         expect(xhr.status).toBe(201);
         expect(xhr.statusText).toBe("Created");
+        /*
         // Create additional Code
         create.ID = "2";
         create.DiscountValue = 5;
         xhr = prepareRequest("POST", "/de/linuxdozent/gittest/odata/service.xsodata/DiscountCode");
         xhr.send(JSON.stringify(create));
         expect(xhr.status).toBe(201);
-        /*
+        */
         // Create Code for different User
         create.ID = "3";
         create.DiscountValue = 5;
@@ -51,7 +52,6 @@ describe("Create discount code for BSCUSTOMER", function() {
         xhr = prepareRequest("POST", "/de/linuxdozent/gittest/odata/service.xsodata/DiscountCode");
         xhr.send(JSON.stringify(create));
         expect(xhr.status).toBe(201);
-        */
     });
 });
 

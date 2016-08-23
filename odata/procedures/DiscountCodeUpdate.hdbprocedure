@@ -43,33 +43,39 @@ BEGIN
       INTO lv_ID, lv_UserName, lv_DiscountValue, lv_SHA256HASH, lv_Redeemed
       FROM "de.linuxdozent.gittest.data::Bookstore.DiscountCode"
       WHERE "SHA256HASH" = lv_SHA256HASH;
-
-    -- Check if we can recreate the Hash
-    SELECT "EncryptionKey"
-      INTO lv_EncryptionKey
-      FROM "de.linuxdozent.gittest.data::Bookstore.CustomerKey"
-      WHERE "UserName" = lv_UserName;
-
-    SELECT HASH_SHA256(
-        to_binary(lv_EncryptionKey) 
-        , to_binary(lv_ID)
-        , to_binary(lv_UserName)
-        , to_binary(lv_DiscountValue)
-        ) INTO lv_New_SHA256HASH FROM DUMMY;
-      
-    if lv_New_SHA256HASH = lv_SHA256HASH then
-        UPDATE "de.linuxdozent.gittest.data::Bookstore.DiscountCode"
-          SET "Redeemed" = 'Y'
-          WHERE "ID" = lv_ID;
-    else
-        SELECT CONCAT( 'New_SHA256HASH: ', lv_New_SHA256HASH ) INTO lv_msg FROM DUMMY;
-        SELECT CONCAT( lv_msg, ' SHA256HASH: ' ) INTO lv_msg FROM DUMMY;
-        SELECT CONCAT( lv_msg, lv_SHA256HASH ) INTO lv_msg FROM DUMMY;
-        SELECT CONCAT( lv_msg, ' UserName: ' ) INTO lv_msg FROM DUMMY;
-        SELECT CONCAT( lv_msg, lv_UserName ) INTO lv_msg FROM DUMMY;
+    
+    IF lv_Redeemed = 'Y' THEN
         error = select 400 as http_status_code, 
                 'Update failed' error_message, 
-                lv_msg detail from dummy;
+                'Discount code was already redeemed' detail from dummy;
+    else
+        -- Check if we can recreate the Hash
+        SELECT "EncryptionKey"
+          INTO lv_EncryptionKey
+          FROM "de.linuxdozent.gittest.data::Bookstore.CustomerKey"
+          WHERE "UserName" = lv_UserName;
+    
+        SELECT HASH_SHA256(
+            to_binary(lv_EncryptionKey) 
+            , to_binary(lv_ID)
+            , to_binary(lv_UserName)
+            , to_binary(lv_DiscountValue)
+            ) INTO lv_New_SHA256HASH FROM DUMMY;
+          
+        if lv_New_SHA256HASH = lv_SHA256HASH then
+            UPDATE "de.linuxdozent.gittest.data::Bookstore.DiscountCode"
+              SET "Redeemed" = 'Y'
+              WHERE "ID" = lv_ID;
+        else
+            SELECT CONCAT( 'New_SHA256HASH: ', lv_New_SHA256HASH ) INTO lv_msg FROM DUMMY;
+            SELECT CONCAT( lv_msg, ' SHA256HASH: ' ) INTO lv_msg FROM DUMMY;
+            SELECT CONCAT( lv_msg, lv_SHA256HASH ) INTO lv_msg FROM DUMMY;
+            SELECT CONCAT( lv_msg, ' UserName: ' ) INTO lv_msg FROM DUMMY;
+            SELECT CONCAT( lv_msg, lv_UserName ) INTO lv_msg FROM DUMMY;
+            error = select 400 as http_status_code, 
+                    'Update failed' error_message, 
+                    lv_msg detail from dummy;
+        end if;
     end if;
     
 END
