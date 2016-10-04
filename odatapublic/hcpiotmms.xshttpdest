@@ -1,6 +1,6 @@
 host = "iotmmss0001142741trial.hanatrial.ondemand.com";
 port = 443;
-pathPrefix = "/com.sap.iotservices.mms/v1/api/http/push/d7f502f6-fd95-4605-9794-4b47c25a78b7";
+pathPrefix = "/com.sap.iotservices.mms/v1/api/http/push/";
 proxyType = http;
 proxyHost = "proxy-trial";
 proxyPort = 8080;
