@@ -1,0 +1,12 @@
+host = "www.googleapis.com";
+port = 443;
+pathPrefix = "";
+proxyType = http;
+proxyHost = "proxy-trial";
+proxyPort = 8080;
+authType = none;
+useSSL = true;
+timeout = 0;
+oAuthAppConfigPackage = "de.linuxdozent.gittest.oauth.google";
+oAuthAppConfig = "googleOAconfig";
+sslAuth = anonymous;

@@ -1,0 +1,10 @@
+{
+	"packageId": "de.linuxdozent.gittest.oauth.google",
+	"name": "googleOAconfig",
+	"clientPackage": "sap.hana.xs.oAuth.lib.providerconfig.providermodel",
+	"clientName": "googleV1",
+	"description": "",
+	"mandatoryScopes": [
+		"https://www.googleapis.com/auth/plus.me"
+	]
+}
