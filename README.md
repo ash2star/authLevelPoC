@@ -34,3 +34,5 @@ You can use the [OData Explorer](http://scn.sap.com/community/developer-center/h
 If you want to use the HANA MDC XSODATA Service in a HCP HTML5 app and with App2AppSSO then follow the great Blog by Martin Raepple: [Principal Propagation between HTML5- or Java-based applications and SAP HANA XS on SAP HANA Cloud Platform](http://scn.sap.com/community/developer-center/cloud-platform/blog/2016/03/21/principal-propagation-between-html5-and-sap-hana-xs-on-sap-hana-cloud-platform).
 
 ## Build
+
+Trigger build by another change.
