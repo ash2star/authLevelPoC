@@ -19,6 +19,7 @@ BEGIN
     DELETE FROM "de.linuxdozent.gittest.data::Bookstore.Customer" WHERE "UserName" = 'BSCUSTOMER';
     DELETE FROM "de.linuxdozent.gittest.data::Bookstore.CustomerKey" WHERE "UserName" = 'BSCUSTOMER';
     DELETE FROM "de.linuxdozent.gittest.data::Bookstore.DiscountCode" WHERE "UserName" = 'BSCUSTOMER';
+    DELETE FROM "de.linuxdozent.gittest.data::Bookstore.DiscountCode" WHERE "UserName" = 'S0001142741';
     DELETE FROM "de.linuxdozent.gittest.data::Bookstore.CustomerOrder.Header" WHERE "Customer" = 'BSCUSTOMER';
 
     CALL _SYS_REPO.GRANT_ACTIVATED_ROLE ('de.linuxdozent.gittest.roles::public','BSCUSTOMER');
