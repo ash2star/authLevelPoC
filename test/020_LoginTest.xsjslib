@@ -6,4 +6,9 @@ describe("Login Users", function() {
 		Login.checkSession();
 	});
 
+	it("should get CSRF token", function() {
+		var sCSRFtoken = Login.getCSRFtoken();
+		expect(sCSRFtoken).toBe('unsafe');
+	});
+
 });
