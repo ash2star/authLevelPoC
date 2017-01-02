@@ -17,7 +17,6 @@ describe("Login Users", function() {
                 "BSADMIN"
             ];
         var initpwd  = "Init1234";
-        var newpwd = "Test1234";
         for (var user in users){
             if(user) {
                 Login.checkSession();
@@ -26,7 +25,7 @@ describe("Login Users", function() {
                 var loginResult = Login.login(users[user], initpwd, csrfToken);
                 expect(loginResult.body.pwdChange).toBe(true);
                 csrfToken = Login.getCSRFtoken(loginResult.cookies);
-                Login.changePassword(users[user], initpwd, newpwd, csrfToken, loginResult.cookies);
+                Login.changePassword(users[user], initpwd, Login.newpwd, csrfToken, loginResult.cookies);
                 Login.logout(csrfToken, loginResult.cookies);
             }
         }

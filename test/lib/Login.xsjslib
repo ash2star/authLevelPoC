@@ -1,3 +1,5 @@
+var newpwd = "Test1234";
+
 function checkSession() {
     var service = '/sap/hana/xs/formLogin/checkSession.xsjs';
     var contentTypeHeader = {
@@ -49,15 +51,15 @@ function login(username, pwd, csrf) {
         expect(body.username).toBe(username);
     }
     var cookies = tupelListToObject(response.cookies);
-    return { "body": body, "cookies": cookies };
+    csrf = getCSRFtoken(cookies);
+    return { "body": body, "cookies": cookies, "csrf": csrf };
 }
 
 function getCSRFtokenAndLogin(_username, _password) {
     checkSession();
     var _csrfToken = getCSRFtoken();
     expect(_csrfToken).toBe("unsafe");
-    login(_username, _password, _csrfToken);
-    return getCSRFtoken();
+    return login(_username, _password, _csrfToken);
 }
 
 function changePassword(username, oldpwd, newpwd, csrf, cookies) {
