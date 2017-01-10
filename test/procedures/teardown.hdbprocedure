@@ -5,5 +5,5 @@ PROCEDURE "CSWGITTEST"."de.linuxdozent.gittest.test.procedures::teardown" ( )
 AS
 BEGIN
     -- EXEC 'DROP USER BSCUSTOMER;';
-    EXEC 'DROP USER BSADMIN;';
+    -- EXEC 'DROP USER BSADMIN;';
 END
