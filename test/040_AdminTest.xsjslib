@@ -21,6 +21,9 @@ describe("Admin actions", function() {
     
     it("should create discount code for BSCUSTOMER", function() {
         var response = jasmine.callHTTPService(discountCodeService, $.net.http.POST, JSON.stringify(discountCodeCreate), header, loginResult.cookies);
+        if (response.status === 400) {
+            expect(response).toBeNull();
+        }
         expect(response.status).toBe($.net.http.CREATED);
     });
     
