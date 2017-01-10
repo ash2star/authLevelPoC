@@ -7,7 +7,6 @@ var discountCodeCreate = {
     "ID": "1",
     "UserName": "BSCUSTOMER",
     "DiscountValue": 10,
-    "SHA256HASH": "",
     "Redeemed": "N"
 };
 var discountCodeService = "/de/linuxdozent/gittest/odata/service.xsodata/DiscountCode";
