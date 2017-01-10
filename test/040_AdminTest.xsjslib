@@ -19,11 +19,12 @@ describe("Admin actions", function() {
         header = OData.prepareRequestHeader(loginResult.csrf);
     });
     
-    it("Create discount code for BSCUSTOMER", function() {
+    it("should create discount code for BSCUSTOMER", function() {
         var response = jasmine.callHTTPService(discountCodeService, $.net.http.POST, JSON.stringify(discountCodeCreate), header, loginResult.cookies);
         expect(response.status).toBe($.net.http.CREATED);
     });
-    it("Create discount code for other user", function() {
+    
+    it("should create discount code for other user", function() {
         // Read which additional customer exist
         var service = encodeURI("/de/linuxdozent/gittest/odata/service.xsodata/Customer?$filter=UserName ne '" + discountCodeCreate.UserName + "'");
         var response = jasmine.callHTTPService(service, $.net.http.GET, undefined, header, loginResult.cookies);

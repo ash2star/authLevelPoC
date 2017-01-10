@@ -36,5 +36,5 @@ describe("Customer actions", function() {
     it("should logout BSCUSTOMER", function() {
         Login.logout(loginResult.csrf, loginResult.cookies);
         Login.checkSession();
-    });    
+    });
 });
