@@ -6,3 +6,9 @@ function prepareRequestHeader(csrfToken) {
     };
     return requestHeader;
 }
+
+function getResponseBody(response) {
+	var body = response.body ? response.body.asString() : "";
+	return JSON.parse(body);
+}
+

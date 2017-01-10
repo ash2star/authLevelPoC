@@ -1,16 +1,13 @@
-describe("Setup Integration Test", function() {
+var OData = $.import("de.linuxdozent.gittest.test.lib", "OData");
 
-	function getResponseBody(response) {
-		var body = response.body ? response.body.asString() : "";
-		return JSON.parse(body);
-	}
+describe("Setup Integration Test", function() {
 
 	it("should setup the tests", function() {
 		var response = jasmine.callHTTPService("/de/linuxdozent/gittest/test/setup.xsjs");
 
 		expect(response.status).toBe($.net.http.OK);
 
-		var responseBody = getResponseBody(response);
+		var responseBody = OData.getResponseBody(response);
 		expect(responseBody.setup).toBe(true);
 	});
 
