@@ -1,17 +1,15 @@
-var destination_package = "de.linuxdozent.gittest.odatapublic";
-var destination_name = "mailgun";
+var destinationPackage = "de.linuxdozent.gittest.odatapublic";
+var destinationName = "mailgun";
 var message;
-var he;
- 
- 
+
 try {
-  var dest = $.net.http.readDestination(destination_package, destination_name);
+  var dest = $.net.http.readDestination(destinationPackage, destinationName);
   var client = new $.net.http.Client();
  
   var req = new $.web.WebRequest($.net.http.POST, "/messages");
   req.headers.set('Content-Type', encodeURIComponent("application/x-www-form-urlencoded"));
  
-  req.parameters.set("domain","sandbox864bff1527b245f583ea2373c52f0cc3.mailgun.org");
+  // req.parameters.set("domain","sandbox864bff1527b245f583ea2373c52f0cc3.mailgun.org");
   req.parameters.set("from","gregor@sandbox864bff1527b245f583ea2373c52f0cc3.mailgun.org");
   req.parameters.set("to","gregor.wolf@gmail.com");
   req.parameters.set("subject","Test subject");

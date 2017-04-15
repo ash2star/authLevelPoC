@@ -7,4 +7,5 @@ proxyPort = 8080;
 authType = basic;
 useSSL = true;
 timeout = 30000;
-sslAuth = client;
+sslHostCheck = false;
+sslAuth = anonymous;
