@@ -21,6 +21,10 @@ To enable the anonymous access you have to assign your admin user the role **sap
 
 Now add the role **de.linuxdozent.gittest.roles::admin** to your development user and the role **de.linuxdozent.gittest.roles::public** to a new user. Don't use your S- or P-User as username if you want to use Application-to-Application Single Sign On (App2AppSSO) with automatic user generation. It will cause an user already exists error. 
 
+### Sending E-Mails
+
+![SAP Cloud Platform Factory - HANA SMTP configuration](SCP-Factory-HANA-SMTP-Configuration.png?raw=true "SAP Cloud Platform Factory - HANA SMTP configuration")
+
 ## Test 
 
 There is an automated test implemented using Jasmine. Read though the [setup guide](https://github.com/sapmentors/SITreg/blob/master/test/README.md) and do this stepps accordingly for this project.
