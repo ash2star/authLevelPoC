@@ -23,7 +23,18 @@ Now add the role **de.linuxdozent.gittest.roles::admin** to your development use
 
 ### Sending E-Mails
 
+With the following steps you can setup your HANA XS Engine to send E-Mails via Google's SMTP Server. Unfortunately this setup works only on on premise and SAP Cloud Platform Factory (Production) installation. I was not able to get an E-Mail sent on the HANA instances in the SCP Trial. The configuration basic can be found at [Use SMTP settings to send mail from a printer, scanner, or app](https://support.google.com/a/answer/176600?hl=en). 
+
+I've used smtp.gmail.com which requires a SSL/TLS connection. To establish such a connection the certificate used to sign the endpoint certificate must be uploaded to the HANA Trust store. To find out which Certificate is uses to sign the endpoint get the the instructions from [Use G Suite certificates for secure transport (TLS)](https://support.google.com/a/answer/6180220?hl=en). I've issued this command:
+
+```
+openssl s_client -starttls smtp -connect smtp.gmail.com:587 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+```
+and stored the resulting text in GMail.crt. After Uploading this certificate to the HANA Trust Manager in the newly created GMail trust store at **/sap/hana/xs/admin/#/trustManager** the issuer is displayed as **CN=Google Internet Authority G2, O=Google Inc, C=US**. The certificate for this ca can be downloaded at https://pki.google.com/. You have to import it also to the GMail trust store. Now you can switch to the SMTP Configurations at **/sap/hana/xs/admin/#/smtp** and maintain the following:
+
 ![SAP Cloud Platform Factory - HANA SMTP configuration](SCP-Factory-HANA-SMTP-Configuration.png?raw=true "SAP Cloud Platform Factory - HANA SMTP configuration")
+
+I've used an App password created at https://myaccount.google.com/apppasswords for the password that has to be provided for Authentication.
 
 ## Test 
 
