@@ -25,6 +25,24 @@ PROCEDURE "CSWGITTEST"."de.linuxdozent.gittest.odatapublic.procedures::CustomerU
    AS
 BEGIN
 
+--   DECLARE lv_UserName  string;
+--   DECLARE lv_FirstName string;
+--   DECLARE lv_LastName  string;
+--   DECLARE lv_EMail     string;
+
+--   SELECT * INTO lv_UserName, lv_FirstName, lv_LastName, lv_EMail FROM :inrow;
+
+--    UPDATE "de.linuxdozent.gittest.data::Bookstore.Customer"
+--       SET  "UserName"  = lv_UserName,
+--            "FirstName" = lv_FirstName,
+--            "LastName"  = lv_LastName, 
+--            "EMail"     = lv_EMail
+--       WHERE "UserName" = CURRENT_USER;
+
+    lt_trace = TRACE (:inrow);
+-- 
+-- Quite interresting that the column in the WHERE statement isn't updated
+--
     UPSERT "de.linuxdozent.gittest.data::Bookstore.Customer"
       SELECT * FROM :inrow
       WHERE "UserName" = CURRENT_USER;

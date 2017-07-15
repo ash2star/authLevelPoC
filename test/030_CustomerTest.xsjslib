@@ -5,14 +5,15 @@ var loginResult;
 var EMail = "john.doe@test.com";
 var FirstName = "John";
 var UserName = "BSCUSTOMER";
-var LastName = "Doe"
+var LoginUserName = UserName;
+var LastName = "Doe";
 var customerURI;
 var header;
 
 describe("Customer actions", function() {
 
     it("should login BSCUSTOMER and get csrfToken", function() {
-        loginResult = Login.getCSRFtokenAndLogin(UserName, Login.newpwd);
+        loginResult = Login.getCSRFtokenAndLogin(LoginUserName, Login.newpwd);
         header = OData.prepareRequestHeader(loginResult.csrf);
     });
     
@@ -90,7 +91,7 @@ describe("Customer actions", function() {
         expect(response.status).toBe(204);
     });
     
-    it("should check changed UserName", function() {
+    it("should check changed LastName and unchanged UserName", function() {
         var response = jasmine.callHTTPService(
                 customerURI, 
                 $.net.http.GET, 
@@ -102,7 +103,7 @@ describe("Customer actions", function() {
 		var responseBody = OData.getResponseBody(response);
 		jasmine.log(response.body.asString());
         expect(responseBody.d.LastName).toBe(LastName);
-        expect(responseBody.d.UserName).toBe(UserName);
+        expect(responseBody.d.UserName).toBe(LoginUserName);
     });
     
     it("should logout BSCUSTOMER", function() {
