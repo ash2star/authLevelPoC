@@ -23,7 +23,6 @@ describe("Admin actions", function() {
         for (var i = 0; i < response.headers.length; ++i) {
             jasmine.log(response.headers[i].name + '": "' + response.headers[i].value);
         }
-		jasmine.log(response.body.asString());
         expect(response.status).toBe($.net.http.CREATED);
     });
     

@@ -25,18 +25,9 @@ PROCEDURE "CSWGITTEST"."de.linuxdozent.gittest.odatapublic.procedures::CustomerU
    AS
 BEGIN
 
-    DECLARE lv_UserName  string;
-    DECLARE lv_FirstName string;
-    DECLARE lv_LastName  string;
-    DECLARE lv_EMail     string;
-
-    SELECT * INTO lv_UserName, lv_FirstName, lv_LastName, lv_EMail FROM :inrow;
-    -- Don't trust the provided Username. We read it from the current user
-    SELECT CURRENT_USER INTO lv_UserName FROM DUMMY; 
-
-    UPDATE "de.linuxdozent.gittest.data::Bookstore.Customer"
-      SET "FirstName" = lv_FirstName, "LastName" = lv_LastName, "EMail" = lv_EMail
-      WHERE "UserName" = lv_UserName;
+    UPSERT "de.linuxdozent.gittest.data::Bookstore.Customer"
+      SELECT * FROM :inrow
+      WHERE "UserName" = CURRENT_USER;
 
     if 1 = 2 then 
         error = select 400 as http_status_code, 
