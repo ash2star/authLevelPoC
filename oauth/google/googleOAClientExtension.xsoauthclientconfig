@@ -1,0 +1,10 @@
+{
+	"modifies": "sap.hana.xs.oAuth.lib.providerconfig.providermodel:googleV1.xsoauthclientconfig",
+	"clientID": "246790365685-mog890moum3ha7gf7i21bgrruqlgmm7j.apps.googleusercontent.com",
+	"tokenEndpointURL": "https://accounts.google.com/o/oauth2/token",
+	"revocationEndpointURL": "https://accounts.google.com/o/oauth2/revoke",
+	"authorizationEndpointURL": "https://accounts.google.com/o/oauth2/auth",
+	"samlIssuer": "",
+	"redirectURL": "https://hanamdcs0001142741trial.hanatrial.ondemand.com/sap/hana/xs/oAuth/lib/runtime/tokenRequest.xsjs",
+	"description": "OAuth Client for GoogleV1"
+}
