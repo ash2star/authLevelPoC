@@ -14,7 +14,7 @@ var callSCPPortalAPI = function() {
     // load the library handling the OAuth protocol
     var oAuthClientLib = $.import("sap.hana.xs.oAuth.lib", "oAuthClient");
     // SCP Portal API specific endpoints
-    var suffix = "/fiori/api/oauth2/v1/services/contentprovider/catalogs/";
+    var suffix = "/fiori/api/oauth2/v1/customSAPUI5Version/versions";
     // where we want to go
     var request = new $.net.http.Request($.net.http.GET, suffix);
     // initialize the HTTP destination and OAuth client
