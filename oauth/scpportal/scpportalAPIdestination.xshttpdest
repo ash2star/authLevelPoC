@@ -1,0 +1,12 @@
+host = "flpportal-s0001142741trial.dispatcher.hanatrial.ondemand.com";
+port = 443;
+pathPrefix = "";
+proxyType = http;
+proxyHost = "proxy-trial";
+proxyPort = 8080;
+authType = none;
+useSSL = true;
+timeout = 0;
+oAuthAppConfigPackage = "de.linuxdozent.gittest.oauth.scpportal";
+oAuthAppConfig = "scpportal";
+sslAuth = anonymous;

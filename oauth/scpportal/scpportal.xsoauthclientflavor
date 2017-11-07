@@ -1,0 +1,16 @@
+{ "parameters":[
+{ "flavorStep":"1Aut", "paramLocation":"uri", "paramName":"client_id", "paramValue":"client_id", "valueType":"eval", "paramMandatory":"true" },
+{ "flavorStep":"1Aut", "paramLocation":"uri", "paramName":"scope", "paramValue":"scope", "valueType":"eval", "paramMandatory":"true" },
+{ "flavorStep":"1Aut", "paramLocation":"uri", "paramName":"response_type", "paramValue":"code", "valueType":"litr", "paramMandatory":"true" },
+{ "flavorStep":"1Aut", "paramLocation":"uri", "paramName":"state", "paramValue":"state", "valueType":"eval", "paramMandatory":"true" },
+{ "flavorStep":"2Gra", "paramLocation":"head", "paramName":"Authorization", "paramValue":"Basic Authentication", "valueType":"sec", "paramMandatory":"true" },
+{ "flavorStep":"2Gra", "paramLocation":"head", "paramName":"Content-Type", "paramValue":"application/x-www-form-urlencoded", "valueType":"litr", "paramMandatory":"true" },
+{ "flavorStep":"2Gra", "paramLocation":"para", "paramName":"code", "paramValue":"code", "valueType":"eval", "paramMandatory":"true" },
+{ "flavorStep":"2Gra", "paramLocation":"para", "paramName":"grant_type", "paramValue":"authorization_code", "valueType":"litr", "paramMandatory":"true" },
+{ "flavorStep":"2Gra", "paramLocation":"para", "paramName":"client_id", "paramValue":"client_id", "valueType":"eval", "paramMandatory":"true" },
+{ "flavorStep":"3Prc", "paramLocation":"head", "paramName":"Bearer ", "paramValue":"access_token", "valueType":"sec", "paramMandatory":"true" },
+{ "flavorStep":"4Ref", "paramLocation":"head", "paramName":"Authorization", "paramValue":"Basic Authentication", "valueType":"sec", "paramMandatory":"true" },
+{ "flavorStep":"4Ref", "paramLocation":"head", "paramName":"Content-Type", "paramValue":"application/x-www-form-urlencoded", "valueType":"litr", "paramMandatory":"true" },
+{ "flavorStep":"4Ref", "paramLocation":"para", "paramName":"grant_type", "paramValue":"refresh_token", "valueType":"litr", "paramMandatory":"true" },
+{ "flavorStep":"4Ref", "paramLocation":"para", "paramName":"refresh_token", "paramValue":"refresh_token", "valueType":"sec", "paramMandatory":"true" },
+] }

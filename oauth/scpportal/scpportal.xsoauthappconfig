@@ -1,0 +1,10 @@
+{
+	"packageId": "de.linuxdozent.gittest.oauth.scpportal",
+	"name": "scpportal",
+	"clientPackage": "de.linuxdozent.gittest.oauth.scpportal",
+	"clientName": "scpportal",
+	"description": "",
+	"mandatoryScopes": [
+		"read"
+	]
+}

@@ -1,0 +1,7 @@
+{
+    "exposed": true,
+    "force_ssl": true,
+    "prevent_xsrf": true,
+    "anonymous_connection": null,
+    "default_file": "index.html"
+}

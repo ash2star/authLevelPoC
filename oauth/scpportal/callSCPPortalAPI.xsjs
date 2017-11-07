@@ -7,29 +7,26 @@ var requestAccessToken = function(url) {
         authorizationURL: url
     }));
 };
-var callGoogle = function() {
-    // you need to add yourGoogleID right here (get it via https://plus.google.com/ -> Profile -> copy the long number)
-    var yourGoogleID = "103844354885580032564";
+var callSCPPortalAPI = function() {
     var response;
     // the HTTP client to send requests
     var oHttpClient = new $.net.http.Client();
     // load the library handling the OAuth protocol
     var oAuthClientLib = $.import("sap.hana.xs.oAuth.lib", "oAuthClient");
-    // Google + API specific endpoints
-    var suffix = "/plus/v1/people/";
-    suffix += yourGoogleID;
+    // SCP Portal API specific endpoints
+    var suffix = "/fiori/api/oauth2/v1/services/contentprovider/catalogs/";
     // where we want to go
     var request = new $.net.http.Request($.net.http.GET, suffix);
     // initialize the HTTP destination and OAuth client
-    var myDestObj = $.net.http.readDestination("de.linuxdozent.gittest.oauth.google", "googleAPIdestination");
-    var oaC = new oAuthClientLib.OAuthClient("de.linuxdozent.gittest.oauth.google", "googleAPIdestination");
+    var myDestObj = $.net.http.readDestination("de.linuxdozent.gittest.oauth.scpportal", "scpportalAPIdestination");
+    var oaC = new oAuthClientLib.OAuthClient("de.linuxdozent.gittest.oauth.scpportal", "scpportalAPIdestination");
     // SCOPES -> configure via XS Admin in the OAuth configuration package
-    //https://www.googleapis.com/auth/plus.me
+    //read
     // if you want to start from scratch, just set a breakpoint here and call this method
     // oaC.userRevokeAccess();
     // initialize the OAuth authorization code flow (and trace a debug message)
     // do you know what happens if you call this URL via your Browser?
-    var url = oaC.userAuthorizeUri("https://hanamdcs0001142741trial.hanatrial.ondemand.com/de/linuxdozent/gittest/oauth/google/callGooglePlusAPI.xsjs");
+    var url = oaC.userAuthorizeUri("https://hanamdcs0001142741trial.hanatrial.ondemand.com/de/linuxdozent/gittest/oauth/scpportal/callSCPPortalAPI.xsjs");
     $.trace.debug("Auth URL is: " + url);
     // if you called the URL via your browser paste the authorization code response into the 'code' variable (after uncommenting of course)
     // var code;
@@ -77,7 +74,7 @@ var callGoogle = function() {
     }
 };
 try {
-    callGoogle();
+    callSCPPortalAPI();
 } catch (err) {
     $.response.setBody("Failed to execute action: " + err.toString());
 }

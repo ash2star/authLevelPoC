@@ -1,0 +1,13 @@
+{
+	"clientID": "cd0414bd-c792-3db4-b439-6e64d9c70c9a",
+	"clientAuthType": "basic",
+	"authorizationEndpointURL": "https://oauthasservices-s0001142741trial.hanatrial.ondemand.com/oauth2/api/v1/authorize",
+	"tokenEndpointURL": "https://oauthasservices-s0001142741trial.hanatrial.ondemand.com/oauth2/api/v1/token",
+	"revocationEndpointURL": "",
+	"flow": "authCode",
+	"clientFlavor": "sap.hana.xs.oAuth.lib.providerconfig.providermodel:hcpV1",
+	"description": "OAuth Client for SCP",
+	"redirectURL": "https://hanamdcs0001142741trial.hanatrial.ondemand.com/sap/hana/xs/oAuth/lib/runtime/tokenRequest.xsjs",
+	"scopeReq": "maxScopes",
+	"samlIssuer": ""
+}
